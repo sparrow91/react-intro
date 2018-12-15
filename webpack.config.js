@@ -20,5 +20,9 @@ module.exports = {
                 loader: 'babel-loader'
             }
         ]
+    },
+    devServer: {
+        publicPath: '/public/',
+        historyApiFallback: true
     }
 }

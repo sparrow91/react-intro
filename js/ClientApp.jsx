@@ -1,18 +1,20 @@
-import React from 'react'
-import {render} from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Landing from './Landing.jsx';
+import Search from './Search.jsx';
 
-const ce = React.createElement;
-const MySecondComponent = function(props) {
-  return ce('div', null, ce('h1', { style: { color: props.color } }, props.title));
-};
-const MyFirstComponent = function() {
-  return ce(
-    'div',
-    null,
-    ce(MySecondComponent, { title: 'Game of thrones', color: 'peru' }),
-    ce(MySecondComponent, { title: 'Game of thrones', color: 'peru' }),
-    ce(MySecondComponent, { title: 'Game of thrones', color: 'peru' }),
-    ce(MySecondComponent, { title: 'Game of thrones', color: 'peru' })
-  );
-};
-render(ce(MyFirstComponent), document.getElementById('app'));
+const FourOhFour = () => <h1>404</h1>;
+const App = () => (
+  <BrowserRouter>
+    <div className="app">
+      <Switch>
+        <Route exact path="/" component={Landing} />
+        <Route path="/search" component={Search} />
+        <Route component={FourOhFour} />
+      </Switch>
+    </div>
+  </BrowserRouter>
+);
+
+render(<App />, document.getElementById('app'));
