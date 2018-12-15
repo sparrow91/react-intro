@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ShowCard from './ShowCard.jsx';
 import data from '../data.json';
 
-const Search = () => (
-  <div className="search">
-   <div>
-    {data.shows.map(show => <ShowCard key={show.imdbID} show={show} />)}
-  </div>
-  </div>
-);
+class Search extends Component {
+  state = { searchTerm: '' };
+  handleSearch = event => {
+    this.setState({ searchTerm: event.target.value });
+  };
+  render() {
+    return (
+      <div className="search">
+        <header>
+          <h1>svideo</h1>
+          <input onChange={this.handleSearch} value={this.state.searchTerm} type="text" placeholder="Search" />
+        </header>
+        <div>
+          {data.shows
+            .filter(
+              show =>
+                `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
+            )
+            .map(show => <ShowCard key={show.imdbID} show={show} />)}
+        </div>
+      </div>
+    );
+  }
+}
 export default Search;
