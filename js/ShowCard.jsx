@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import { shape, string } from 'prop-types';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -30,14 +29,6 @@ const ShowCard = props => {
       </div>
     </Wrapper>
   );
-};
-ShowCard.propTypes = {
-  show: shape({
-    poster: string.isRequired,
-    title: string.isRequired,
-    year: string.isRequired,
-    description: string.isRequired
-  }).isRequired
 };
 
 export default ShowCard;
